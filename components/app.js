@@ -10,11 +10,16 @@ import ToDoList from "./ToDoList";
 function App() {
 
   // Defining state variables
-  const [tasks, setTask] = useState(["Do laundry", "Go to gym", "Walk Dog"]);
+  const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk Dog"]);
   
+  // Function to add a new task
+  const addTask = (taskText) => {
+    setTasks([...tasks, taskText]);
+  }
+
   return (
     <SafeAreaView>
-      <ToDoForm />
+      <ToDoForm addTask={addTask}/>
       <ToDoList tasks={tasks}/>
     </SafeAreaView>
   );
