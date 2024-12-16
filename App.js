@@ -1,15 +1,27 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import ToDoForm from "./ToDoForm";
+import ToDoList from "./ToDoList";
 
 export default function App() {
-  
+  // Defining state variables
+  const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk Dog"]);
+
+  // Function to add a new task
+  const addTask = (taskText) => {
+    setTasks([...tasks, taskText]);
+  };
+
   // Creating stack navigator
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
+      <SafeAreaView>
+        <ToDoForm addTask={addTask} />
+        <ToDoList tasks={tasks} />
+      </SafeAreaView>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
@@ -19,10 +31,30 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  task: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+  },
+  completed: {
+    backgroundColor: "#e0e0e0",
+  },
+  taskText: {
+    fontSize: 16,
+  },
+  form: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginRight: 10,
   },
 });
