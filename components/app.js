@@ -8,10 +8,14 @@ import ToDoForm from "./ToDoForm";
 import ToDoList from "./ToDoList";
 
 function App() {
+
+  // Defining state variables
+  const [tasks, setTask] = useState(["Do laundry", "Go to gym", "Walk Dog"]);
+  
   return (
     <SafeAreaView>
       <ToDoForm />
-      <ToDoList />
+      <ToDoList tasks={tasks}/>
     </SafeAreaView>
   );
 }

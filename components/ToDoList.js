@@ -9,9 +9,17 @@ import {
   ScrollView,
 } from 'react-native';
 
-const ToDoList = () => {
+const ToDoList = ({tasks}) => {
     return(
         <ScrollView>
+          {/* Using map to iterate through array */}
+          <ul>
+            {tasks.map((tasks) => (
+              <li key={index}>
+                {tasks}
+              </li>
+            ))}
+          </ul>
         <Pressable>
           <View style={[styles.task, styles.completed]}>
             <Text style={styles.taskText}>Do laundry</Text>
